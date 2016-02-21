@@ -1,12 +1,17 @@
 
 // Implémenter ici les 4 classes du modèle.
 
+
+var gDraw;
+
 //Classe dessin
 function Drawing(){
 	//Tableau de dessin
 	this.dessins = new Array();
-		
-	//Ajout format
+	
+	gDraw = this;
+	
+	//Ajout Format
 	this.addDessins = function(format) {
         this.dessins.push(format);
     }.bind(this);
@@ -16,15 +21,15 @@ function Drawing(){
     }.bind(this);
 };
 
-//Classe format
-function format(couleur,epaisseur){
+//Classe Format
+function Format(couleur,epaisseur){
 	this.couleur = couleur;
 	this.epaisseur = epaisseur;
 };
 
-//Classe rectangle
+//Classe Rectangle
 function Rectangle(coordX, coordY, largeur, hauteur, epaisseur , couleur ){
-	format.call(this, couleur, epaisseur);
+	Format.call(this, couleur, epaisseur);
 	this.coordX = coordX;
 	this.coordY = coordY;
 	this.largeur = largeur;
@@ -38,7 +43,7 @@ function Rectangle(coordX, coordY, largeur, hauteur, epaisseur , couleur ){
 
 //Classe ligne
 function Ligne(coordx1,coordy1,coordx2,coordy2,epaisseur,couleur){
-	format.call(this, couleur, epaisseur);
+	Format.call(this, couleur, epaisseur);
 	this.coordx1 = coordx1;
 	this.coordy1 = coordy1;
 	this.coordx2 = coordx2;
