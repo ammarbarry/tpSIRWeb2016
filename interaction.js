@@ -16,12 +16,15 @@ function DnD(canvas, interactor) {
 	
 	// Developper les 3 fonctions gérant les événements
 	
-	//	Fonction Presseion
+	//	Fonction Pression
 	this.maFctGérantLaPression = function(evt){
 		var res = getMousePosition(canvas, evt) ;
 		this.posInitialX = res.x;
 		this.posInitialY = res.y;
 		this.isdown = true;
+		
+		interactor.onInteractionStart(this);
+		
 		this.debug("mouse down");
 		
 	}.bind(this)
@@ -31,7 +34,9 @@ function DnD(canvas, interactor) {
 		if(this.isdown){
 			var res = getMousePosition(canvas, evt) ;
 			this.posFinal1 = res.x;
-			this.posFinal2 = res.y;			
+			this.posFinal2 = res.y;		
+			interactor.onInteractionUpdate(this);
+			
 			this.debug("mouse move");
 		}
 		
@@ -40,6 +45,8 @@ function DnD(canvas, interactor) {
 	//fonction Relachement
 	this.maFctGérantLeRelâchement= function(evt){
 		var res = getMousePosition(canvas, evt) ;
+		interactor.onInteractionEnd(this);
+		
 		this.debug("mouse up");
 		this.isdown = false;
 	}.bind(this);
